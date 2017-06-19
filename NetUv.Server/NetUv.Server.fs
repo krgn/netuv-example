@@ -105,7 +105,7 @@ let startServer serverType =
   | Tcp ->
     server <- loop.CreateTcp().SimultaneousAccepts(true).Listen(endPoint, onConnection)
     printfn "%O:Echo server started on %O." serverType endPoint
-  loop.RunDefault() |> printfn "result: %d"
+  loop.RunNoWait() |> printfn "result: %d"
   printfn "%O:Echo server loop completed." serverType
 
 [<EntryPoint>]
@@ -119,6 +119,8 @@ let main argv =
       printfn "Echo server error %O." exn
 
   Console.ReadLine() |> ignore
+
+  loop.Stop()
   loop.Dispose()
 
   0 // return an integer exit code
