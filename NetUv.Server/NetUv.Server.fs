@@ -118,8 +118,8 @@ let main argv =
     | exn ->
       printfn "Echo server error %O." exn
 
+  Console.ReadLine() |> ignore
   loop.Dispose()
 
-  Console.ReadLine() |> ignore
 
   0 // return an integer exit code
